@@ -19,14 +19,7 @@ module Pipedrive
 
       url = build_url(args, params.delete(:fields_to_select))
       params = params.to_json unless method.to_sym == :get
-      begin
-        res = connection.__send__(method.to_sym, url, params)
-      rescue Errno::ETIMEDOUT
-        retry
-      rescue Faraday::ParsingError
-        sleep 5
-        retry
-      end
+      res = connection.__send__(method.to_sym, url, params)
       process_response(res)
     end
 
