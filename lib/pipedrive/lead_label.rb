@@ -8,5 +8,9 @@ module Pipedrive
     def entity_name
       'leadLabels'
     end
+    
+    def update_http_method
+      :patch
+    end
   end
 end
