@@ -28,6 +28,9 @@ module Pipedrive
       url << "/#{args[1]}" if args[1]
       url << ":(#{fields_to_select.join(',')})" if fields_to_select.is_a?(::Array) && fields_to_select.size.positive?
       url << "?api_token=#{@api_token}"
+      
+      puts "=========#{url}"
+      
       url
     end
 
