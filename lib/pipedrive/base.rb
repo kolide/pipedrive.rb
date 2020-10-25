@@ -19,9 +19,7 @@ module Pipedrive
 
       url = build_url(args, params.delete(:fields_to_select))
       params = params.to_json unless method.to_sym == :get
-      puts "===============#{method.to_sym} zzz #{url} zzz #{params}"
       res = connection.__send__(method.to_sym, url, params)
-      puts "=========#{res}"
 
       process_response(res)
     end
@@ -31,8 +29,6 @@ module Pipedrive
       url << "/#{args[1]}" if args[1]
       url << ":(#{fields_to_select.join(',')})" if fields_to_select.is_a?(::Array) && fields_to_select.size.positive?
       url << "?api_token=#{@api_token}"
-      
-      puts "=========#{url}"
       
       url
     end
